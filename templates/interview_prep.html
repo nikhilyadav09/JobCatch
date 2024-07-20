@@ -1,0 +1,197 @@
+<!-- templates/interview_prep.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Interview Preparation</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<style>
+    /* Reset some default styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* General styles */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  background-color: #f4f4f4;
+  color: #333;
+  background-image:url("https://img.freepik.com/free-photo/3d-rendering-cinema-director-chair_23-2151169470.jpg?t=st=1714105839~exp=1714109439~hmac=452a6babca1a0ddd98d8dfe2454cd26867e62e2e8c746c65f71f872acec5ca3f&w=996");
+/* background-image: url('https://static.vecteezy.com/system/resources/thumbnails/026/130/893/small_2x/laptop-with-mock-up-blank-screen-on-wooden-table-in-front-of-cafe-space-for-text-product-display-computer-laptop-montage-technology-freelance-work-concept-photo.jpg'); */
+		background-size: cover; /* Adjusts the image size to cover the entire element */
+		background-position: center; /* Centers the background image */
+		background-repeat: no-repeat; /* Prevents the image from repeating */
+		background-attachment: fixed; 
+
+}
+
+h1 {
+  text-align: center;
+  margin: 2rem 0;
+  color: #d5a3a3;
+}
+
+/* Select box styles */
+select {
+  display: block;
+  margin: 0 auto 2rem;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border-radius: 0.25rem;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  color: #333;
+}
+
+/* Question container styles */
+#questionContainer {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+}
+
+/* Question styles */
+.question {
+  margin-bottom: 2rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background-color: #f9f9f9;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.question h2 {
+  margin-bottom: 1rem;
+  color: #444;
+}
+
+/* Answer styles */
+.answer {
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: #e9e9e9;
+  border-radius: 0.5rem;
+  display: none;
+}
+
+/* Button styles */
+button {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+    /* Catchy line */
+    /* .catchy-line {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 1.5rem;
+            color: #d5a3a3;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        } */
+ /* Catchy line */
+        .catchy-line {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 1.5rem;
+            color: #d5a3a3;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            white-space: nowrap;
+            animation: catchyLineAnimation 5s steps(50, end) infinite;
+        }
+
+        @keyframes catchyLineAnimation {
+            0% {
+                width: 0;
+            }
+            100% {
+                width: 100%;
+            }}
+          
+</style>
+
+
+<body>
+    <header>
+        <nav>
+          <div class="logo">
+            <a href="/index">JobCatch</a>
+          </div>
+          <ul>
+            <li ><a href="/index">Home</a></li>
+            <li><a href="/index#about">About</a></li>
+            <li><a href="/index#contact">Contact Us</a></li>
+            <li><a href="/resume">Resume</a></li>
+
+    
+        </nav>
+      </header>
+    
+    <h1>Interview Preparation</h1>
+    <p class="catchy-line">Ace Your Dream Job with Confidence!</p>
+    <select id="jobPositionSelect">
+        <option value="" disabled selected>Select Job Position</option>
+        <option value="Web_D">Web Developer</option>
+        <option value="Data_science">Data scientist</option>
+        <option value="devops">DevOps Engineer</option>
+
+        <!-- Add more job positions here -->
+    </select>
+
+    <div id="questionContainer"></div>
+
+    <script>
+        const questionContainer = document.getElementById('questionContainer');
+        const jobPositionSelect = document.getElementById('jobPositionSelect');
+
+        jobPositionSelect.addEventListener('change', () => {
+            questionContainer.innerHTML = '';
+            const selectedJobPosition = jobPositionSelect.value;
+            if (selectedJobPosition) {
+                fetch(`/get_interview_questions?job_position=${selectedJobPosition}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        data.forEach(({ question, answer }) => {
+                            const questionElement = document.createElement('div');
+                            questionElement.classList.add('question');
+                            questionElement.innerHTML = `
+                                <h2>${question}</h2>
+                                <button class="viewAnswerButton">View Answer</button>
+                                <div class="answer">${answer}</div>
+                            `;
+                            questionContainer.appendChild(questionElement);
+
+                            const viewAnswerButton = questionElement.querySelector('.viewAnswerButton');
+                            const answerElement = questionElement.querySelector('.answer');
+
+                            viewAnswerButton.addEventListener('click', () => {
+                                answerElement.style.display = answerElement.style.display === 'none' ? 'block' : 'none';
+                            });
+                        });
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+            }
+        });
+    </script>
+</body>
+</html>

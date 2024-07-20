@@ -1,0 +1,1082 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JobCatch</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* General Styles */
+    body {
+  background-image: url('https://images.unsplash.com/photo-1519751138087-5bf79df62d5b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
+}
+
+header {
+  background-color: #0c233b;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.logo a {
+  font-size: 30px;
+  font-weight: bold;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Change font to a good readable font */
+  color: #ffffff; /* White color */
+  text-decoration: none;
+  transition: color 0.3s ease;
+  margin-right: 10px; /* Add space between words */
+  display: inline-block; /* Start from left and ensure proper hover effect */
+  border-bottom: 2px solid transparent; /* Initially transparent underline */
+  letter-spacing: 1px; /* Add letter spacing */
+}
+
+.logo a:hover {
+  border-bottom-color: #ffc107; 
+
+}
+
+ /* Hover effect */
+ .job-table tbody tr:hover {
+    background-color: #f5f5f5;
+    cursor: pointer;
+  }
+
+nav ul {
+  display: flex;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li a {
+  color: #ffffff;
+  text-decoration: none;
+  padding: 10px 15px;
+  transition: background-color 0.3s ease;
+}
+
+nav ul li a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.auth-buttons a {
+  background-color: #ffffff;
+  color: #393e44;
+  border: none;
+  padding: 10px 20px;
+  margin-left: 10px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  border-radius: 7%;
+}
+
+.auth-buttons a:hover {
+  background-color: #e6e6e6;
+}
+
+/* Main Content Styles */
+main {
+  padding: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.hero {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.hero h1 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+
+.hero button {
+  background-color: #ffffff;
+  color: #0c52b1;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+
+/* Top Container Styles */
+.top-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.top-container a {
+  color: #0c52b1;
+  text-decoration: none;
+  margin-right: 10px;
+}
+
+/* Resume Container Styles */
+.resume-container {
+  background-color: #ffffff;
+  color: #0c52b1;
+  padding: 20px;
+  margin: 20px;
+  text-align: center;
+  margin-top: 90px;
+}
+
+.resume-container h2 {
+  margin-top: 0;
+}
+
+.custom-file-upload input[type="file"] {
+  display: none; /* Hide the default file input */
+}
+.custom-file-upload {
+  display: inline-block; /* Display as inline block to stay in one line */
+  border: 2px solid #000; /* Black border */
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.custom-file-upload span {
+  margin-right: 10px;
+}
+
+.custom-file-upload:hover {
+  background-color: #0b0b0a; /* Yellow background on hover */
+  color: white;
+}
+
+#uploadMessage {
+  display: none;
+  margin-top: 10px;
+}
+
+#findJobsBtn {
+  display: none;
+  margin-top: 10px;
+}
+/* Show the file name next to the custom button */
+.file-name {
+  margin-left: 10px;
+}
+
+
+.resume-container button {
+  background-color: #0c52b1;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+#findJobs {
+  margin-top: 20px;
+}
+
+.job-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.job-table th,
+.job-table td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Developers Section Styles */
+.developers-heading {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.developers-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.developer {
+  text-align: center;
+  margin: 20px;
+}
+
+.circular-frame {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto 10px;
+}
+
+.circular-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.developer-name {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.developer-copyright {
+  font-size: 14px;
+  color: #888888;
+}
+
+/* Contact Section Styles */
+.contact-section {
+  background-color: #ffffff;
+  color: #0c52b1;
+  padding: 20px;
+  text-align: center;
+}
+
+.social-icon {
+  color: #0c52b1;
+  font-size: 24px;
+  margin: 0 10px;
+}
+/* -------------------------- */
+.faq-section {
+  padding: 40px;
+  text-align: center;
+}
+
+.faq-container {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.faq-item {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+.faq-question {
+  background-color: #f8f8f8;
+  padding: 10px 20px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.faq-toggle {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.faq-answer {
+  padding: 20px;
+  display: none;
+}
+    .customer-stories {
+  text-align: center;
+  padding: 40px 0;
+  background-color: #f8f8f8;
+}
+
+.story-cards {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.story-card {
+  width: 300px;
+  margin: 0 20px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.story-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.story-card h3 {
+  font-size: 18px;
+  margin: 20px;
+}
+
+.story-card p {
+  margin: 0 20px 20px;
+  color: #666;
+}
+
+.story-card .read-more {
+  display: block;
+  margin: 0 20px 20px;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.see-more {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+}
+    .reviews-section {
+  padding: 40px;
+  text-align: center;
+}
+
+.reviews-container {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  padding: 20px; /* Add some padding around the edges */
+ 
+}
+
+.review {
+  max-width: 300px; /* Adjust this value as needed */
+  margin: 0 20px; /* Add some spacing between review cards */
+  text-align: left;
+  flex: 0 0 auto; /* Prevent review cards from wrapping */
+}
+
+.rating {
+  font-size: 24px;
+  color: gold;
+  margin-bottom: 10px;
+}
+
+.review-title {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.review-content {
+  margin-bottom: 10px;
+}
+
+.read-more {
+  color: blue;
+  text-decoration: underline;
+}
+
+.review-author {
+  font-size: 14px;
+  color: gray;
+}
+  /* Keyframes for the bubble effect */
+  @keyframes bubble {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.1); opacity: 0.7; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+
+  /* Apply the bubble animation to the scan-resume-box */
+  .scan-resume-box {
+    animation: bubble 2s ease-in-out infinite;
+    cursor: pointer; /* Add cursor pointer for better UX */
+    border-radius: 2%;
+   
+  }
+
+  .resume-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 2px solid rgb(29, 97, 176); /* Dark cyan solid border */
+    padding: 50px; /* Increase padding for a larger gap */
+    box-shadow: 0 0 10px rgb(21, 111, 176); /* Dark cyan drop shadow */
+    border-radius: 2%;
+  }
+  
+  .resume-box {
+    flex: 1; /* Take up remaining space */
+    margin-right: 15px; /* Larger gap at the right end */
+    position: relative; /* Add relative positioning */
+  }
+  
+  .resume-box::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    border-radius: 10px; /* Adjust border radius as needed */
+    z-index: -1;
+    transition: background-color 0.3s ease; /* Smooth transition for color change */
+  }
+  
+  .resume-box.bubble::after {
+    background-color: rgba(255, 0, 0, 0.5); /* Blush color with transparency */
+  }
+  
+  .upload-btn {
+    margin-top: 10px; /* Adjust spacing for the upload button */
+  }
+  
+  
+  .resume-container {
+    position: relative;
+}
+
+
+
+/*Upload cloud icon css*/
+
+.cloud-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed #ccc; /* Dotted line border */
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.middle-cloud {
+    position: absolute;
+    top: 50%;
+    left: 20%;
+    transform: translate(-50%, -50%);
+}
+
+.dotted-container {
+    border: 1px dashed #ccc; /* Dotted line border */
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.left-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.optimize-resume {
+  margin-bottom: 20px;
+}
+
+.scan-resume-box {
+  display: inline-block;
+  padding: 20px 100px;
+  border: 1px dotted #000;
+  cursor: pointer;
+}
+
+.white-box {
+  background-color: white;
+  color: black;
+}
+
+    /* Style to remove bottom horizontal slider */
+    .auth-buttons {
+      display: flex;
+      gap: 20px;
+      overflow-x: hidden; /* Hide horizontal scrollbar */
+    }
+  
+    .auth-buttons a {
+      padding: 10px 20px;
+      border: 2px solid darkcyan;
+      color: darkcyan;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 5px;
+    }
+  
+    .auth-buttons a:hover {
+      background-color: darkcyan;
+      color: white;
+    }
+    footer {
+  position: relative;
+ 
+}
+
+
+</style>
+
+</head>
+<body>
+<!--header section -->
+
+  <header>
+    <nav>
+      <div class="logo">
+        <a href="#home">JobCatch</a>
+      </div>
+      <ul>
+        
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact Us</a></li>
+        <li><a href="/resume">Resume</a></li>
+        <li><a href="{{ url_for('interview_prep') }}">Interview Preparation</a></li>
+
+      </ul>
+      <div class="auth-buttons">
+        <a href="{{url_for('login')}}" class="bubble-effect">Login</a>
+        <a href="{{url_for('register')}}" class="bubble-effect">Sign Up</a>
+      </div>
+    </nav>
+  </header>
+  <style>
+    /* Typing animation */
+    .typing-header {
+        overflow: hidden; /* Ensures the text is not revealed until the animation */
+        border-right: .15em solid orange; /* The typewriter cursor */
+        white-space: nowrap; /* Keeps the content on a single line */
+        margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+        letter-spacing: .10em; /* Adjust as needed */
+        animation: typing 3s steps(30, end), blink-caret .5s step-end infinite;
+        font-family: cursive;
+        font-weight: bolder;
+    }
+    
+    /* Typing animation keyframes */
+    @keyframes typing {
+        from { width: 0 }
+        to { width: 100% }
+    }
+    
+    @keyframes blink-caret {
+        from, to { border-color: transparent }
+        50% { border-color: rgb(21, 14, 2) }
+    }
+    
+    /* Additional styling */
+    .Home-page {
+        background-image: linear-gradient(to bottom, white 0%, cyan 50%, white 100%);
+    }
+    
+    .left-content {
+        text-align: center;
+        padding: 50px;
+    }
+    
+    .optimize-resume {
+        background-color: white;
+        padding: 20px;
+    }
+    
+    .scan-resume-box {
+        cursor: pointer;
+        padding: 10px 20px;
+        margin-top: 20px;
+        
+    }
+    .optimize-resume {
+    background: url('https://img.freepik.com/free-vector/modern-liquid-abstract-background_1393-185.jpg?t=st=1714127024~exp=1714130624~hmac=b8c94f71cce98b7c94d72a017d9cb72bcee6b3e759f1b6675e1e99aa9ad39168&w=996') center/cover;
+    padding: 20px;
+}
+    </style>
+
+<div style="background-image: linear-gradient(to bottom, white 0%, cyan 50%, white 100%);" class="Home-page">
+  <main style="min-height: 1400px; ">
+    <section class="hero">
+      <div class="left-content">
+        <div class="optimize-resume">
+          <h1 class="typing-header" >Job Catch: Your Career Companion</h1>
+              <p  style=" font-size: 30px;">Discover tailored job opportunities, real-time listings, and interview prep resources at Job Catch. Upload your resume today and experience the difference!</p>
+              <div class="scan-resume-box white-box" onclick="scrollToResume()" style="background-color: white; color: darkblue; font-size: 30px; font-weight: bold; border: 5px solid darkcyan;">Scan Your Resume</div>
+              </div>
+      </div>
+    </section>
+    <br><br><br><br><br><br>
+    <style>
+      .career {
+          position: relative; /* Required for absolute positioning */
+          transform: translate(18%, 0); /* Move container to the right by its own width */
+
+      }
+      .image {
+          width: 700px; /* Adjust image width as needed */
+          /* height: 500px;  */
+          position: absolute; /* Position the image */
+          top: 0; /* Align to the top */
+          right: 0; /* Align to the right */
+          /* margin:left */
+          margin-right: 20px;
+          border-radius: 2%;
+          border-color: #000000;
+          box-shadow: #000000;
+          
+      }
+  </style>
+  
+  <div class="career">
+      <!-- <img src="https://www.muvi.com/wp-content/uploads/2021/06/2021-06-10.jpg" alt="Image Description" class="image"> -->
+        <img src="{{ url_for('static', filename='./images/1.jpg') }}"alt="Image Description" class="image">
+  </div>
+  <div class="everyone">
+
+  </div>
+  <style>
+    .instructions-container {
+        display: flex;
+        align-items: flex-start; /* Align items to the top */
+        margin-top: 20px;
+    }
+    .instructions-list {
+        list-style-type: none; /* Remove default list style */
+        margin: 0;
+        padding: 0;
+        text-Align:left
+    }
+    .instructions-list li {
+        margin-bottom: 10px; /* Add spacing between list items */
+        transform: translate(-18%, 0); /* Move container to the right by its own width */
+        font-size: 20px; /* Increased font size */
+
+
+    }
+    .instructions-list li:before {
+        content: counter(item); /* Use counter for numbering */
+        counter-increment: item; /* Increment counter for each item */
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        background-color: #2196F3; /* Circle color */
+        border-radius: 50%; /* Circle shape */
+        color: #FFFFFF;
+        text-align: center;
+        line-height: 20px;
+        margin-right: 10px;
+        transform: translate(-50%, 0); /* Move container to the right by its own width */
+
+    }
+
+    .instructions-list h2{
+      transform: translate(-18%, 0); /* Move container to the right by its own width */
+
+    }
+    
+</style>
+
+<div class="instructions-container">
+  <ul class="instructions-list">
+      <h2> Features of  our Job Catch Website</h2>
+      <li>Build your resume easily with us.</li><br>
+      <li>Access interview preparation questions.</li><br>
+      <li>Upload your resume for job prediction.</li><br>
+      <li>Get a list of recommended jobs to apply for.</li><br>
+      <li>Receive personalized job predictions.</li><br>
+      <li>Receive personalized guidance for you </li><br>
+      <li>Benefit from our application guide.</li>
+  </ul>
+</div>
+
+    <style>
+      .resume_builder {
+          text-align: center;
+          margin-top: 600px; /* Adjust margin-top as needed */
+      }
+      .bubble_button {
+        display: inline-block;
+        padding: 10px 20px;
+        border-radius: 30px;
+        background-color: #2196F3; /* Updated color */
+        color: #FFFFFF;
+        font-size: 30px;
+        text-decoration: none;
+        border: none;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+    .bubble_button:hover {
+        background-color: #1976D2; /* Color on hover */
+    }
+     
+      .dark_text {
+          color: #333333;
+      }
+      .resume_builder ul {
+          list-style-type: none;
+          padding: 0;
+          text-align: left;
+          display: inline-block;
+          text-align: left;
+          margin-left: auto;
+          margin-right: auto;
+      }
+      .resume_builder ul li {
+          position: relative;
+          counter-increment: myCounter;
+          margin-bottom: 20px;
+          padding-left: 50px; /* Adjust padding for circle size */
+
+      }
+      .resume_builder ul li::before {
+          content: counter(myCounter);
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 25px;
+          height: 25px;
+          text-align: center;
+          line-height: 25px;
+          border: 3px solid green;
+          border-radius: 50%;
+          background-color: #FFFFFF;
+      }
+      .resume_builder ul li::after {
+          content: "";
+          position: absolute;
+          left: 25px;
+          top: 12px;
+          width: 10px;
+          height: 2px;
+          background-color: #4CAF50;
+      }
+  </style>
+  
+  <div class="resume_builder">
+      
+    <h2>Build resumes that land job interviews with ease</h2>
+<br>
+<ul>
+  <li><h5>Access 100% free, ATS-friendly templates</h5></li>
+  <li><h5>Optimize your resume for targeted job applications</h5></li>
+  <li><h5>Check your resume's score with AI-powered technology</h5></li>
+  <li><h5>Get expert insights from recruiters to improve your resume</h5></li>
+  <li><h5>Utilize comprehensive job search tools to find your next opportunity</h5></li>
+</ul>
+
+      <div>
+        
+        
+      <button style="background-color: white; color: green; font-size: 30px; font-weight: bold; border: 5px solid darkcyan;" class="bubble_button dark_text" onclick="location.href='/resume';">Build Your Resume Here</button>
+      </div>
+  </div>
+ <br><br>   
+  <div>
+    <h1 style="text-align:center;">Unlock Your Dream Job with Job Catch</h1>
+    <h4 style="text-align:center;">Discover your perfect career match by uploading your resume. Our powerful job matching algorithm analyzes your skills and experience to provide personalized job recommendations tailored just for you.</h4>
+  </div>
+  
+        <div class="resume-container">
+            <div class="resume-box">
+                <form id="uploadForm" action="/submit" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <!-- Cloud icon for selecting file -->
+                        <label for="resume" class="cloud-icon">
+                            <div class="cloud-wrapper" style="font-size: 64px; color: darkcyan;"> <!-- Set color to dark cyan -->
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <input type="file" id="resume" name="file" accept=".pdf,.doc,.docx" required style="display: none;">
+
+                            </div>
+                            <span>Choose Resume(pdf,docX)</span>
+                        </label>
+                    </div>
+                    <button type="submit" name="submit" value="abc" id="uploadBtn" class="upload-btn" style="background-color: darkcyan; color: white;">Upload</button> <!-- Set background color and text color -->
+                </form>
+                {% if message %}
+              <p>{{ message }}</p>
+                 {% endif %}
+          
+              
+                 {% if message %}
+                <button id="findJobs" class="find-jobs-btn" style="background-color: darkcyan; color: white;">Find Jobs</button> <!-- Set background color and text color -->
+                <div id="jobRecommendations" style="display: none;">
+                    <center><h5 style="color: rgb(106, 106, 220);">This are the best Jobs we find for you as  <p style="font-style: italic; color: rgb(13, 13, 245);">{{ prediction }} </p></h5></center>
+                    
+                    <table class="job-table" class ="job-table">
+                      <thead style="color: #000; font-weight: bold;">
+                        <tr >
+                          <th>Job Title</th>
+                          <th>Company</th>
+                          <th>Location</th>
+                          <th>Post Date</th>
+                          <th>Salary</th>
+                          <th>link</th>
+                        </tr>
+                      </thead>
+                      <tbody >
+                        {% for job in job_dic %}
+                        <tr style="color: #000;" >
+                          <td>{{ job.Job_Title }}</td>
+                          <td>{{ job.Company_Name }}</td>
+                          <td>{{ job.Location }}</td>
+                          <td>{{ job.Post_Time }}</td>
+                          <td>{{ job.Salary }}</td>
+                          <td><a href="{{ job.link }}"target="_blank">{{ job.link }}</a></td>
+
+                        
+                      </tbody>
+                      {% endfor %}
+                      {% endif %}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<script>
+
+  document.getElementById("uploadBtn").addEventListener("click", function() {
+    var fileInput = document.getElementById("resume");
+    if (fileInput.files.length === 0) {
+        alert("Please choose a file to upload.");
+    } else {
+        document.getElementById("uploadForm").submit();
+    }
+});
+
+
+
+function scrollToResume() {
+  const resumeContainers = document.getElementsByClassName('resume-container');
+  if (resumeContainers.length > 0) {
+    resumeContainers[0].scrollIntoView({ behavior: 'smooth' });
+  }
+}
+
+</script>
+<section class="reviews-section">
+  <h2>What JobCatch customers are saying</h2>
+  <div class="reviews-container">
+    <div class="review">
+      <div class="rating">★★★★★</div>
+      <div class="review-title">"A Perfect app for job seekers ..."</div>
+      <div class="review-content">Jobscan is a lifesaver! It helped me tailor my resume perfectly for each job application, and I landed interviews within days... <a href="#" class="read-more">Read more</a></div>
+      <div class="review-author">Harsh Rawat on Jan 16, 2024</div>
+    </div>
+    <div class="review">
+      <div class="rating">★★★★</div>
+      <div class="review-title">"Ultimate tool to find perfect job ..."</div>
+      <div class="review-content">Using Jobscan was like having a personal resume coach. It pointed out exactly what I needed to change to match job descriptions... <a href="#" class="read-more">Read more</a></div>
+      <div class="review-author">mallesh k on Nov 01, 2023</div>
+    </div>
+    <div class="review">
+      <div class="rating">★★★★★</div>
+      <div class="review-title">"I get a call within ..."</div>
+      <div class="review-content">Jobscan took the stress out of job hunting. I could see where my resume was lacking and improve it quickly. Highly recommend!... <a href="#" class="read-more">Read more</a></div>
+      <div class="review-author">marshall e. on Nov 16, 2023</div>
+    </div>
+    <div class="review">
+      <div class="rating">★★★★★</div>
+      <div class="review-title">"Ultimate tool for Job seekers ..."</div>
+      <div class="review-content">Jobscan is the ultimate tool for job seekers. It boosted my confidence by showing me how to optimize my resume for any position I applied for.... <a href="#" class="read-more">Read more</a></div>
+      <div class="review-author">Kushal shah  on Aug 14, 2022</div>
+    </div>
+    <div class="review">
+      <div class="rating">★★★★★</div>
+      <div class="review-title">"A efficient work done ..."</div>
+      <div class="review-content">Thanks to Jobscan, I was able to make my resume stand out among hundreds of applicants. It's intuitive, efficient, and definitely worth every penny.... <a href="#" class="read-more">Read more</a></div>
+      <div class="review-author">marshall e. on Jan 26, 2022</div>
+    </div>
+    <div class="review">
+      <div class="rating">★★★★★</div>
+      <div class="review-title">"Get a call back within..."</div>
+      <div class="review-content">Jobscan helped me understand what employers are looking for in a resume. Now I'm getting callbacks left and right!... <a href="#" class="read-more">Read more</a></div>
+      <div class="review-author">Ajay Kumar. on Dec 20, 2023</div>
+    </div>
+    <!-- Add more review divs here -->
+  </div>
+</section>
+<section class="faq-section">
+  <h2>Frequently Asked Questions</h2>
+  <div class="faq-container">
+    <div class="faq-item">
+      <div class="faq-question">How do I know if my resume is ATS-compliant?<span class="faq-toggle">+</span></div>
+      <div class="faq-answer" style="display: none;">
+        <p>Each Applicant Tracking System has different methods of scanning and filtering resumes. A resume scanner will be able to detect formatting errors that make your resume hard to understand for different Applicant Tracking Systems. Jobscan's resume scanner will give you a match rate based on top ATS including iCIMS, RecruiterBox Lever, Greenhouse and Taleo.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">What is a good ATS score for a resume?<span class="faq-toggle">+</span></div>
+      <div class="faq-answer" style="display: none;">
+        <p>Typically, a good ATS score for a resume is around 80% or higher, indicating that your resume is well-optimized for Applicant Tracking Systems.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">Do ATS scan resumes?<span class="faq-toggle">+</span></div>
+      <div class="faq-answer" style="display: none;">
+        <p>Yes, ATS scan resumes to parse and analyze them for keywords, qualifications, and other relevant information.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">Can ATS detect PDF?<span class="faq-toggle">+</span></div>
+      <div class="faq-answer" style="display: none;">
+        <p>Yes, most modern ATS can detect and parse information from PDF resumes, but it's recommended to use a text-based format like Word (.docx) or plain text (.txt) to ensure compatibility.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    var toggles = document.querySelectorAll(".faq-toggle");
+    toggles.forEach(function(toggle) {
+      toggle.addEventListener("click", function() {
+        var answer = this.parentNode.nextElementSibling;
+        answer.style.display = (answer.style.display === "block") ? "none" : "block";
+        this.textContent = (this.textContent === "+") ? "-" : "+";
+      });
+    });
+  });
+</script>
+
+    <!-- Add more faq-item divs for additional questions -->
+  </div>
+</section>
+<section class="customer-stories">
+  <h2>How JobCatch has helped real job seekers</h2>
+  <div class="story-cards">
+    <div class="story-card">
+      <img src="{{ url_for('static', filename='images/cust1.jpg') }}" alt="kalpnas's Story">
+      <h3>Within Hours of Using JobCatch, Sakshi Attracted Recruiters on LinkedIn</h3>
+      <p>JobCatch streamlined her job search process, matching her with relevant opportunities and helping on land on dream job....<a href="#" class="read-more">Read more</a></p>
+      
+    </div>
+    <div class="story-card">
+      <img src="{{ url_for('static', filename='images/cust2.jpg') }}" alt="Ram's Story">
+      <h3>How Ram Overcame 8 Months of Unemployment to Land His Dream Job</h3>
+      <p>Ram, through JobCatch's career exploration, transitioned smoothly into a tech role from a different industry....<a href="#" class="read-more">Read more</a></p>
+      
+    </div>
+    <div class="story-card">
+      <img src="{{ url_for('static', filename='images/cust3.jpg') }}" alt="ankita's Story">
+      <h3>She Built a Network and Landed a Job in a New City using Jobscan's optimisation</h3>
+      <p>Ankita, with JobCatch's personalized recommendations, landed a job in her field within a week after struggling for months....<a href="#" class="read-more">Read more</a></p>
+ 
+    </div>
+  </div>
+  <a href="#" class="see-more">See more stories</a>
+</section>
+
+<!-- About Page -->
+    <div id="about">
+      <!-- Developer sections... -->
+      <h2 class="developers-heading">Developers team</h2>
+      <div class="developers-container">
+
+        <!-- Developer 1 -->
+        <div class="developer">
+          <div class="circular-frame">
+            <img src="{{ url_for('static', filename='images/aasutosh.jpg') }}" alt="Asutosh">
+          </div>
+          <div class="developer-name">Asutosh</div>
+          <div class="developer-copyright">Sophomer at Sitare University</div>
+        </div>
+
+        <!-- Developer 2 -->
+        <div class="developer">
+          <div class="circular-frame">
+            <img src="{{ url_for('static', filename='images/shekhar.jpg') }}" alt="Shekhar">
+          </div>
+          <div class="developer-name">Sekhar Shiriwash</div>
+          <div class="developer-copyright">Sophomer at Sitare University</div>
+        </div>
+  
+        <!-- Developer 3 -->
+        <div class="developer">
+          <div class="circular-frame">
+            <img src="{{ url_for('static', filename='images/nikhil.jpg') }}" alt="Nikhil">
+          </div>
+          <div class="developer-name">Nikhil Yadav</div>
+          <div class="developer-copyright">Freshman at Sitare University</div>
+        </div>
+  
+        <!-- Developer 4 -->
+        <div class="developer">
+          <div class="circular-frame">
+            <img src="{{ url_for('static', filename='images/mallesh.jpg') }}" alt="Mallesh">
+          </div>
+          <div class="developer-name">Mallesh kamati</div>
+          <div class="developer-copyright">Freshman at Sitare University</div>
+        </div>
+  
+        <!-- Developer 5 -->
+        <div class="developer">
+          <div class="circular-frame">
+            <img src="{{ url_for('static', filename='./images/anshu.jpg') }}" alt="Anshu">
+          </div>
+          <div class="developer-name">Anshu</div>
+          <div class="developer-copyright">Freshman at Sitare University</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Contact Page -->
+<footer >
+  <div id="contact">
+    <div class="contact-section">
+      <h2 style="color: #000;">Get in Touch</h2>
+      <p>Have a question or need assistance? Feel free to reach out to us.</p>
+      <div class="social-icons">
+        <!-- Social icons... -->
+        <a style="color: rgb(0, 128, 255);" href="https://www.facebook.com/" class="social-icon"><i class="fab fa-facebook"></i></a>
+          <a style="color: rgb(9, 6, 6);" href="https://twitter.com/" class="social-icon"><i class="fab fa-twitter"></i></a>
+          <a style="color: rgb(208, 23, 23);"href="https://www.instagram.com/" class="social-icon"><i class="fab fa-instagram"></i></a>
+          <a style="color: rgb(40, 146, 239);"href="https://www.linkedin.com/nikhilyadav09" class="social-icon"><i class="fab fa-linkedin"></i></a>
+          <a style="color: rgb(0, 0, 0);" href="https://github.com/nikhilyadav09" class="social-icon"><i class="fab fa-github"></i></a>
+        </div>
+        <p style="color: black;font-weight: bold;">&copy; 2024 JobCatch. All rights reserved.</p>
+       
+      </div>
+      </div>
+
+
+    </div>
+ 
+
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <script>
+    const findJobsBtn = document.getElementById('findJobs');
+    const jobRecommendations = document.getElementById('jobRecommendations');
+
+    findJobsBtn.addEventListener('click', () => {
+      jobRecommendations.style.display = 'block';
+    });
+  </script>
+
+</body>
+</html>
+
+
+
+
+
+

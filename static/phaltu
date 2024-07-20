@@ -1,0 +1,385 @@
+/* Inline CSS for the top container */
+.top-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #2c3e50; /* Better color for the top container */
+  border: 2px solid transparent;
+  border-radius: 10px;
+  position: relative; /* Position relative for pseudo-elements */
+}
+
+/* Style for top buttons */
+.top-container a {
+  text-decoration: none;
+  color: #fff; /* White color for button text */
+  position: relative;
+  transition: color 0.3s ease; /* Smooth transition for color change */
+  margin-right: 30px; /* Add small space between buttons */
+}
+
+/* Style for top buttons pseudo-elements */
+.top-container a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #007bff; /* Blue color for underline effect */
+  transform: scaleX(0); /* Initially hidden */
+  transition: transform 0.3s ease; /* Smooth transition for width change */
+  text-decoration: none;
+}
+
+/* Hover effect for top buttons */
+.top-container a:hover::after {
+  transform: scaleX(1); /* Show underline effect on hover */
+}
+
+/* Active/focus effect for top buttons */
+.top-container a:active::after,
+.top-container a:focus::after {
+  transform: scaleX(1); /* Show underline effect when clicked or focused */
+}
+
+/* Active/focus effect for top buttons text */
+.top-container a:active,
+.top-container a:focus {
+  color: #fff; /* White color for button text when active or focused */
+}
+
+/* Inline CSS for the resume input container */
+.resume-container {
+  width: 60%;
+  margin: 50px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.resume-container input[type="file"] {
+  margin-bottom: 10px;
+}
+.resume-container button[type="submit"] {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+}
+.resume-container button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+/* Inline CSS for the job table */
+.job-table {
+  width: 80%;
+  margin: 20px auto;
+  border-collapse: collapse;
+}
+.job-table th, .job-table td {
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+.job-table th {
+  background-color: #007bff;
+  color: #fff;
+  text-align: left;
+}
+
+
+
+
+
+
+
+
+/*Contact Us page css*/
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-image: url('https://images.pexels.com/photos/1054220/pexels-photo-1054220.jpeg?auto=compress&cs=tinysrgb&w=600');
+  background-size: cover;
+  background-position: center;
+  height: 100vh; /* Set height to viewport height for full-screen background */
+}
+.leader-photos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
+.leader-photos img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin: 0 10px;
+}
+
+/* Inline CSS for footer container */
+.footer-container {
+  background-color:#2c3e50;;
+  padding: 20px;
+  text-align: center;
+}
+.footer-container a {
+  margin: 0 10px;
+}
+
+
+
+
+/* CSS for the contact form */
+form {
+  width: 50%;
+  max-width: 400px;
+  margin: 20px auto; /* Adjust margin to center the form below the heading and decrease top space */
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+textarea {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+textarea {
+  height: 100px;
+}
+
+button[type="submit"] {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+/* Optional: Style form on smaller screens */
+@media screen and (max-width: 600px) {
+  form {
+    width: 90%;
+  }
+}
+
+
+
+
+
+
+
+
+
+/* Inline CSS for the top container */
+.top-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #2c3e50; /* Better color for the top container */
+  border: 2px solid transparent;
+  border-radius: 10px;
+  position: relative; /* Position relative for pseudo-elements */
+}
+
+/* Style for top buttons */
+.top-container a {
+  text-decoration: none;
+  color: #fff; /* White color for button text */
+  position: relative;
+  transition: color 0.3s ease; /* Smooth transition for color change */
+  margin-right: 30px; /* Add small space between buttons */
+}
+
+/* Style for top buttons pseudo-elements */
+.top-container a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #007bff; /* Blue color for underline effect */
+  transform: scaleX(0); /* Initially hidden */
+  transition: transform 0.3s ease; /* Smooth transition for width change */
+  text-decoration: none;
+}
+
+/* Hover effect for top buttons */
+.top-container a:hover::after {
+  transform: scaleX(1); /* Show underline effect on hover */
+}
+
+/* Active/focus effect for top buttons */
+.top-container a:active::after,
+.top-container a:focus::after {
+  transform: scaleX(1); /* Show underline effect when clicked or focused */
+}
+
+/* Active/focus effect for top buttons text */
+.top-container a:active,
+.top-container a:focus {
+  color: #fff; /* White color for button text when active or focused */
+}
+
+/* Inline CSS for the resume input container */
+.resume-container {
+  width: 60%;
+  margin: 50px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.resume-container input[type="file"] {
+  margin-bottom: 10px;
+}
+.resume-container button[type="submit"] {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+}
+.resume-container button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+/* Inline CSS for the job table */
+.job-table {
+  width: 80%;
+  margin: 20px auto;
+  border-collapse: collapse;
+}
+.job-table th, .job-table td {
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+.job-table th {
+  background-color: #007bff;
+  color: #fff;
+  text-align: left;
+}
+
+
+
+
+
+
+
+
+/*Contact Us page css*/
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-image: url('https://images.pexels.com/photos/1054220/pexels-photo-1054220.jpeg?auto=compress&cs=tinysrgb&w=600');
+  background-size: cover;
+  background-position: center;
+  height: 100vh; /* Set height to viewport height for full-screen background */
+}
+.leader-photos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
+.leader-photos img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin: 0 10px;
+}
+
+/* Inline CSS for footer container */
+.footer-container {
+  background-color:#2c3e50;;
+  padding: 20px;
+  text-align: center;
+}
+.footer-container a {
+  margin: 0 10px;
+}
+
+
+
+
+/* CSS for the contact form */
+form {
+  width: 50%;
+  max-width: 400px;
+  margin: 20px auto; /* Adjust margin to center the form below the heading and decrease top space */
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+textarea {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+textarea {
+  height: 100px;
+}
+
+button[type="submit"] {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+/* Optional: Style form on smaller screens */
+@media screen and (max-width: 600px) {
+  form {
+    width: 90%;
+  }
+}

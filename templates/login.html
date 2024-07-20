@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Basic -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <!-- Site Metas -->
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://img.freepik.com/free-vector/gradient-geometric-background_23-2149335968.jpg?t=st=1714129910~exp=1714133510~hmac=3c4c81c7ca2f086b3feb5a5dffc4e5b55990a4a9136fd4e1737198657bc25b32&w=996');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            padding-top: 50px; /* Add space from the top */
+        }
+
+        h2 {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .form {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .icon {
+            position: relative;
+        }
+
+        .icon i {
+            position: absolute;
+            top: 12px;
+            left: 10px;
+            color: #aaa;
+        }
+
+        .icon input {
+            padding-left: 30px;
+        }
+
+        p {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        p a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        p a:hover {
+            text-decoration: underline;
+        }
+
+        .image {
+            width: 200px;
+            height: 200px;
+            margin-left: 80px;
+        }
+
+        .img {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #13ceef;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+
+</head>
+
+<body class="sub_page">
+
+
+
+    <!-- about section -->
+
+    <section class="about_section layout_padding">
+        <div class="img">
+            <h3 style="text-align: center;">Login to use JobCatch</h3>
+
+        </div>
+        <form method="POST" action="/login" class="form">
+            <div class="icon">
+                <i class="fas fa-id-badge"></i>
+                <input type="text" id="unique_id" name="unique_id" placeholder="Unique ID" required>
+            </div>
+
+            <div class="icon">
+                <i class="fas fa-lock"></i>
+                <input type="password" id="password" name="password" placeholder="Password" required>
+            </div>
+
+            <input type="submit" value="Login">
+        </form>
+        <p>Don't have an account? <a href="/register">Sign Up</a></p>
+    </section>
+
+
+</body>
+
+</html>

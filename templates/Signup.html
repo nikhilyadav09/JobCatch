@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Basic -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <!-- Site Metas -->
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            background-image: url('https://img.freepik.com/free-photo/3d-view-puzzle-pieces_23-2150499115.jpg?t=st=1714130303~exp=1714133903~hmac=08848e492a3881fef5fbb2ef337d6078de6be84554c84d2c5b7196f04ab0ec28&w=1380');
+            
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        
+            
+        }
+
+        h2 {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .form_container {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-image: url('https://img.freepik.com/free-vector/gradient-geometric-background_23-2149335968.jpg?t=st=1714129910~exp=1714133510~hmac=3c4c81c7ca2f086b3feb5a5dffc4e5b55990a4a9136fd4e1737198657bc25b32&w=996');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .icon {
+            position: relative;
+        }
+
+        .icon i {
+            position: absolute;
+            top: 12px;
+            left: 10px;
+            color: #aaa;
+        }
+
+        .icon input {
+            padding-left: 30px;
+        }
+
+        p {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        p a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        p a:hover {
+            text-decoration: underline;
+        }
+        .icon input::placeholder,
+        .icon textarea::placeholder {
+            margin-left: 100px; /* Adjust margin as needed */
+        }
+    </style>
+
+</head>
+
+<body class="sub_page">
+
+
+
+    <section class="registration_section">
+      <div class="container">
+          <div class="row">
+              <div class="col-md-12">
+                  <div class="form_container">
+                      <h2>Register</h2>
+                      <form class="form" action="/register" method="POST">
+                          <label for="name">Name</label>
+                          <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+                          <label for="email">Email</label>
+                          <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+                          <label for="unique_id">Unique ID</label>
+                          <input type="text" id="unique_id" name="unique_id" placeholder="Enter your unique ID" required>
+
+                          <label for="phone_number">Phone Number</label>
+                          <input type="text" id="phone_number" name="phone_number" placeholder="Enter your phone number" required>
+
+                          <label for="password">Password</label>
+                          <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
+                          <label for="confirm_password">Confirm Password</label>
+                          <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm your password" required>
+
+                          <label for="address">Enter Current Location Pincode</label>
+                          <textarea id="address" name="address" placeholder="Enter your address" required></textarea>
+
+                          <input type="submit" value="Register">
+                      </form>
+                      <p>Already have an account? <a href="{{ url_for('login') }}">Login</a></p>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+
+</body>
+
+</html>

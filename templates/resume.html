@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resume-builder</title>
+    <link rel="stylesheet" href="style.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+
+<style>
+
+
+    /* resume-generator csss */
+
+
+/* style.css */
+* { 
+	margin: 0; 
+	padding: 0; 
+	box-sizing: border-box; 
+} 
+
+body { 
+    background-image: url('https://img.freepik.com/free-photo/3d-cartoon-portrait-person-practicing-law-related-profession_23-2151419488.jpg?t=st=1714107285~exp=1714110885~hmac=397d776f9610b03b03bd11987b338807da1ff7198bfdfb303b69d3e1c9d338e4&w=996');
+
+		/* background-image: url('https://static.vecteezy.com/system/resources/thumbnails/026/130/893/small_2x/laptop-with-mock-up-blank-screen-on-wooden-table-in-front-of-cafe-space-for-text-product-display-computer-laptop-montage-technology-freelance-work-concept-photo.jpg'); */
+		background-size: cover; /* Adjusts the image size to cover the entire element */
+		background-position: center; /* Centers the background image */
+		background-repeat: no-repeat; /* Prevents the image from repeating */
+		background-attachment: fixed; 
+		font-family: Arial, Helvetica, sans-serif; 
+        position: relative; 
+} 
+body::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5); /* Adjust the alpha value (0.5) to control the transparency */
+        z-index: -1; /* Ensure the overlay is behind the content */
+    }
+.resume-builder { 
+	padding: 27px 100px; 
+} 
+
+.container { 
+	padding: 10px 30px; 
+	background: rgb(243, 245, 247); 
+	border-radius: 10px; 
+	height: auto; 
+	width: 60%; 
+	margin: auto; 
+} 
+
+.container h1 { 
+	text-align: center; 
+	background-image: linear-gradient(to right, rgb(70, 20, 163), #18ebeb);
+	padding: 10px; 
+	color: white; 
+	margin-bottom: 20px; 
+} 
+
+input, 
+textarea { 
+	background-color: transparent; 
+	margin: 10px 0; 
+	padding: 5px; 
+	outline: none; 
+	border: none; 
+	border-bottom: 2px solid black; 
+	display: block; 
+	width: 100%; 
+} 
+
+button { 
+	border: none; 
+	background-image: linear-gradient(to right, rgb(51, 10, 146), #e7f1f1, rgb(12, 145, 150));
+
+	padding: 15px; 
+	border-radius: 7px; 
+	font-weight: bold; 
+	cursor: pointer; 
+	display: block; 
+	margin: auto; 
+	margin-bottom: 20px; 
+} 
+
+button:hover { 
+	font-size: medium; 
+} 
+
+.output-container { 
+	display: none; 
+	width: 0%; 
+	margin: 10px auto; 
+} 
+
+.output { 
+	background-color: white; 
+	border: 2px solid white; 
+	margin-bottom: 10px; 
+} 
+
+.heading { 
+	padding: 20px 10px; 
+	text-align: center; 
+	color: white; 
+	background-color: rgb(50, 50, 50); 
+	text-transform: uppercase; 
+} 
+
+.heading h4 { 
+	color: rgb(200, 200, 200); 
+	padding-top: 9px; 
+} 
+
+.info { 
+	display: flex; 
+	padding: 20px; 
+} 
+
+.left { 
+	width: 40%; 
+	border-right: 2px dashed black; 
+	display: flex; 
+	flex-direction: column; 
+	justify-content: space-evenly; 
+} 
+
+.right { 
+	width: 60%; 
+	padding-left: 20px; 
+	display: flex; 
+	flex-direction: column; 
+	justify-content: space-evenly; 
+} 
+
+.box { 
+	margin: 10px 0; 
+	padding: 5px 10px; 
+	height: auto; 
+	overflow-wrap: break-word; 
+} 
+
+.box h2, 
+.box p { 
+	margin-bottom: 5px; 
+} 
+
+.tip { 
+	font-size: small; 
+	color: gray; 
+	text-align: center; 
+} 
+
+.credit { 
+	text-align: center; 
+	font-weight: bold; 
+	padding: 10px 3px; 
+	color: rgb(80, 80, 80); 
+} 
+
+a { 
+	color: black; 
+} 
+
+/* a:hover { 
+	color: rgb(247, 28, 12); 
+	font-weight: bold; 
+}  */
+
+/* media queries begin */
+@media screen and (max-width: 920px) { 
+	.container { 
+		width: 100%; 
+	} 
+
+	.output-container { 
+		width: 87%; 
+	} 
+} 
+
+@media screen and (max-width: 600px) { 
+	.resume-builder { 
+		padding: 10px 30px; 
+	} 
+
+	h1 { 
+		font-size: 160%; 
+	} 
+
+	.info { 
+		flex-direction: column; 
+	} 
+
+	.left { 
+		border-right: none; 
+		width: 100%; 
+	} 
+
+	.right { 
+		padding-left: 0; 
+		width: 100%; 
+	} 
+} 
+
+
+.top p{
+	text-align: center;
+	font-weight: bolder;
+
+}
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+/* Header Styles */
+header {
+  background-color: #0c233b;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.logo a {
+  font-size: 30px;
+  font-weight: bold;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Change font to a good readable font */
+  color: #ffffff; /* White color */
+  text-decoration: none;
+  transition: color 0.3s ease;
+  margin-right: 10px; /* Add space between words */
+  display: inline-block; /* Start from left and ensure proper hover effect */
+  border-bottom: 2px solid transparent; /* Initially transparent underline */
+  letter-spacing: 1px; /* Add letter spacing */
+}
+
+.logo a:hover {
+  border-bottom-color: #ffc107; /* Change the underline color on hover */
+}
+
+
+
+nav ul {
+  display: flex;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li a {
+  color: #ffffff;
+  text-decoration: none;
+  padding: 10px 15px;
+  transition: background-color 0.3s ease;
+}
+
+nav ul li a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  
+}
+
+
+
+  
+</style>
+
+
+
+<body>
+    <header>
+        <nav>
+          <div class="logo">
+            <a href="/index">JobCatch</a>
+          </div>
+          <ul>
+            <li ><a href="/index">Home</a></li>
+            <li><a href="/index#about">About</a></li>
+            <li><a href="/index#contact">Contact Us</a></li>
+            <li><a href="{{ url_for('interview_prep') }}">Interview Preparation</a></li>
+    
+          </ul>
+   
+        </nav>
+      </header>
+    
+    <!-- Main content -->
+    <section class="resume-builder">
+        <div class="container">
+            <h1>Resume-builder</h1>
+			<div class="top">
+			<p >by JobCatch</p> 
+			</div>
+            <div class="resume_container">
+                <!-- Input form -->
+                <form class="inputField">
+                    <br><h2 >Personal Information</h2><br>
+
+                    <!-- Name -->
+                    <label style="font-weight:bold" for="nameField">Your Name</label>
+                    <input type="text" name="name" placeholder="Enter here" title="Your Name" />
+
+                    <!-- Title/Sub Heading -->
+                    <label style="font-weight:bold" for="titleField">Title/Sub Heading</label>
+                    <input type="text" name="title" placeholder="Enter here" title="Enter Title/Sub Heading" />
+
+                    <label style="font-weight:bold" for="emailField">Your Email</label>
+                    <input type="text" name="email" placeholder="example@example.com" class="form-control" />
+
+                    <label style="font-weight:bold" for="contactField">Your Contact</label>
+                    <input type="text" name="contact" placeholder="+1 123-456-7890" class="form-control" />
+
+                    <label style="font-weight:bold" for="addressField">Your Address</label>
+                    <textarea name="address" placeholder="123 Main Street, City, Country" cols="40" rows="3" title="Enter Your address"></textarea>
+
+                    <label style="font-weight:bold" for="githubField">Github Link</label>
+                    <input name="github" placeholder="https://github.com/username" class="form-control">
+
+					<label style="font-weight:bold" for="githubField">LinkedIn Link</label>
+                    <input name="linkedin" placeholder="https://github.com/username" class="form-control">
+
+		
+
+                    <br><h2>Professional Information</h2><br>
+
+                    <!-- Work Experience -->
+                    <label style="font-weight:bold" for="weField">Work Experience</label>
+                    <textarea name="work_experience" placeholder="Enter here" cols="40" rows="3" title="Enter Your Work Experience"></textarea>
+
+                    <!-- Academic Details -->
+                    <label style="font-weight:bold" for="adField">Academic Details</label>
+                    <textarea name="academic_details" placeholder="Enter here" cols="40" rows="3" title="Enter Your Academic Details"></textarea>
+
+                    <!-- Objective -->
+                    <label style="font-weight:bold" for="objectiveField">Career Objective</label>
+                    <input type="text" placeholder="Enter here" title="Enter Your Objective" name="objective" />
+
+                    <!-- Skills -->
+                    <label style="font-weight:bold" for="skillsField">Skills</label>
+                    <textarea name="skills" title="Enter Your Skills" placeholder="Enter here" cols="40" rows="3"></textarea>
+
+                    
+                    <!-- Achievements -->
+                    <label style="font-weight:bold" for="EField">Education</label>
+                    <textarea name="achievements" placeholder="Enter here" cols="40" rows="3" title="Enter Your Education"></textarea>
+
+					
+					<label style="font-weight:bold" for="HField">Hobbies & Interests</label>
+                    <textarea name="hobbies" placeholder="Enter here" cols="40" rows="3" title="Enter Your Hobbies & Interests"></textarea>
+					
+					<label style="font-weight:bold" for="SField">Scholarship Awards</label>
+                    <textarea name="Awards" placeholder="Enter here" cols="40" rows="3" title="Enter Your Awards"></textarea>
+
+					
+					
+
+                </form>
+            </div>
+			<!-- Generate/Edit button -->
+        </div>
+    </section>
+
+    <!-- Output container -->
+    <div class="output_container"></div>
+	<div>
+	<button style="font-weight:bold" onclick="hide()">Generate / Edit</button>
+	</div>
+    <!-- Script -->
+    <script>
+
+// Taking elements from HTML
+const inputField = document.querySelector(".inputField");
+const main = document.querySelector(".resume-builder");
+const outputContainer = document.querySelector(".output_container");
+
+let isHidden = true;
+
+// Function to toggle between input form and resume preview
+function hide() {
+    if (isHidden) {
+        // Hide the input form and show the resume preview
+        main.style.display = "none";
+        isHidden = false;
+
+        outputContainer.style.display = "block";
+        outputContainer.innerHTML = `
+            <div class="output">
+                <div class="heading">
+                    <h1>${inputField.querySelector("[name='name']").value}</h1>
+                    <h4>${inputField.querySelector("[name='title']").value}</h4>
+                </div>
+                <div class="info">
+                    <div class="above">
+                        <div class="box">
+                            <h2>Email</h2>
+                            <p>${inputField.querySelector("[name='email']").value}</p>
+                        </div>
+                        <div class="box">
+                            <h2>Contact</h2>
+                            <p>${inputField.querySelector("[name='contact']").value}</p>
+                        </div>
+                        <div class="box">
+                            <h2>Address</h2>
+                            <p>${inputField.querySelector("[name='address']").value}</p>
+                        </div>
+                        <div class="box">
+                            <h2>GitHub</h2>
+                            <p>${inputField.querySelector("[name='github']").value}</p>
+                        </div>
+                        <div class="box">
+                            <h2>LinkedIn</h2>
+                            <p>${inputField.querySelector("[name='linkedin']").value}</p>
+                        </div>
+
+						<div class="box">
+                            <h2>Scholarship Awards</h2>
+                            <p>${inputField.querySelector("[name='Awards']").value}</p>
+                        </div>
+
+                    </div>
+                    <div class="below">
+                        <div class="box">
+                            <h2>Career Objective</h2>
+                            <p>${inputField.querySelector("[name='objective']").value}</p>
+                        </div>
+                        <div class="box">
+                            <h2>Skills</h2>
+                            <p>${inputField.querySelector("[name='skills']").value}</p>
+                        </div>
+                        <div class="box">
+                            <h2>Academic Details</h2>
+                            <p>${inputField.querySelector("[name='academic_details']").value}</p>
+                        </div>
+                        <div class="box">
+                            <h2>Work Experience</h2>
+                            <p>${inputField.querySelector("[name='work_experience']").value}</p>
+                        </div>
+                        <div class="box">
+                            <h2>Education</h2>
+                            <p>${inputField.querySelector("[name='achievements']").value}</p>
+                        </div>
+
+						<div class="box">
+                            <h2>Hobbies & Interests</h2>
+                            <p>${inputField.querySelector("[name='hobbies']").value}</p>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            <button onclick="print()">Print Resume</button>
+        `;
+
+    } else {
+        // Show the input form and hide the resume preview
+        main.style.display = "block";
+        isHidden = true;
+
+        outputContainer.style.display = "none";
+        outputContainer.innerHTML = "";
+    }
+}
+
+
+    </script>
+  
+</body>
+
+</html>
