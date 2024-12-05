@@ -28,9 +28,9 @@ The **Job Recommendation System** is an innovative project designed to simplify 
 
 ## Technologies Used
 
-- **Web Scraping**: Tools like BeautifulSoup, Scrapy, or Selenium to gather job postings.  
-- **Resume Parsing**: Libraries such as `PyPDF2` or `pdfplumber` for extracting information from PDF files.  
-- **Database**: PostgreSQL/MySQL/SQLite for storing job data.  
+- **Web Scraping**: Tools like BeautifulSoup to gather job postings.  
+- **Resume Parsing**: Libraries such as `PyPDF2` for extracting information from PDF files.  
+- **Database**: PostgreSQL for storing job data.  
 - **Recommendation Engine**: Algorithms leveraging libraries like scikit-learn for matching jobs.  
 
 ## Future Scope
