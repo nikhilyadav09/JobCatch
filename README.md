@@ -33,13 +33,6 @@ The **Job Recommendation System** is an innovative project designed to simplify 
 - **Database**: PostgreSQL for storing job data.  
 - **Recommendation Engine**: Algorithms leveraging libraries like scikit-learn for matching jobs.  
 
-## Future Scope
-
-- Expand the number of supported job websites for scraping.  
-- Enhance resume parsing to support more file formats like DOCX and TXT.  
-- Integrate advanced natural language processing (NLP) techniques for better job-user matching.  
-- Add a user interface for improved user interaction.  
-
 ## About
 
 This project aims to automate and personalize the job search process, making it easier for users to discover opportunities that align with their career goals. By leveraging technology, it bridges the gap between job seekers and employers efficiently.  
