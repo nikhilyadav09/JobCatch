@@ -19,14 +19,14 @@ requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 
 
 app = Flask(__name__)
-app.secret_key = "89603852792d332f6ec2958a65cfad03"
+app.secret_key = "secret key here"
 
 # Database connection parameters
-DB_NAME = 'dhp2024'
-DB_USER = 'postgres'
-DB_PASSWORD = 'Nikhil@930'
-DB_HOST = 'localhost'
-DB_PORT = '5432'
+DB_NAME = 'database name here'
+DB_USER = 'database user'
+DB_PASSWORD = 'your password'
+DB_HOST = 'Host name here'
+DB_PORT = 'port here'
 
 # Function to establish database connection
 def connect_db():
