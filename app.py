@@ -71,7 +71,7 @@ def register():
         
         # Send registration confirmation email
         return redirect(url_for('login'))
-    return render_template('signup.html')
+    return render_template('Signup.html')
 
 
 # Login page
@@ -194,6 +194,10 @@ def extract_text_from_docx(file_data):
         text += paragraph.text + '\n'
     return text
 
+headers = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36',
+    'Accept-Language': 'en-US,en;q=0.9',
+}
 
 @app.route('/submit', methods=['POST'])
 def upload():
@@ -209,79 +213,53 @@ def upload():
             text = extract_text_from_docx(file.read())
         else:
             return render_template('index.html', message='Unsupported file format')
+
         cur = conn.cursor()
         cur.execute("INSERT INTO resumes (filename, resume_text) VALUES (%s, %s)", (filename, text))
         conn.commit()
         cur.close()
-        render_template('index.html',message='Resume uploaded successfully')
+
         try:
             job_prediction = predict(text)
-            
-            jobcode=job_code[job_prediction]
+            jobcode = job_code[job_prediction]
 
-
-            # Define the URL
-            url = "https://api.scrapingdog.com/scrape?api_key=6627b78af4d2ec5eef0e84ab&url=https://www.glassdoor.co.in/Job/india-{}-SRCH_IL.0,5_IN115_KO6,19.htm&dynamic=false"
-            url = url.format(jobcode)
-            # Send a GET request to the URL
-            response = requests.get(url)
-
-            # Parse the HTML content
+            # Glassdoor scraping (without API)
+            url = f"https://www.glassdoor.co.in/Job/india-{jobcode}-jobs-SRCH_IL.0,5_IN115_KO6,19.htm"
+            response = requests.get(url, headers=headers, timeout=10)
+            print("response :",response)
             soup = BeautifulSoup(response.content, "html.parser")
 
-            # Find the ul tag with class "JobsList_jobsList__lqjTr"
             ul_tag = soup.find("ul", class_="JobsList_jobsList__lqjTr")
+            job_list = []
 
-            # Find all li tags with class "DiscoverMoreSeoLinks_linkGroup__6TyrU" inside the ul tag
-            li_tags = ul_tag.find_all("li", class_="JobsList_jobListItem__wjTHv")
-            job_list=[]
-            # Iterate over each li tag and extract required information
-            for li in li_tags:
-                job_dic={}
-                try:
-                    # Find company name
-                    company_name_elem = li.find("span", class_="EmployerProfile_compactEmployerName__LE242")
-                    company_name = company_name_elem.text.strip() if company_name_elem else None
+            if ul_tag:
+                li_tags = ul_tag.find_all("li", class_="JobsList_jobListItem__wjTHv")
+                for li in li_tags:
+                    try:
+                        job_dic = {}
 
-                    # Find job title
-                    job_title_elem = li.find("a", class_="JobCard_jobTitle___7I6y")
-                    job_title = job_title_elem.text.strip() if job_title_elem else None
-
-                    # Find salary (handle NoneType object)
-                    salary_elem = li.find("div", class_="JobCard_salaryEstimate__arV5J")
-                    salary = salary_elem.text.strip() if salary_elem else None
-
-                    # Raise an exception if company name, job title, and salary are not available
-                    if not (company_name and job_title or salary):
-                        continue
-                    else:
-                        # Find location
+                        company_name_elem = li.find("span", class_="EmployerProfile_compactEmployerName__LE242")
+                        job_title_elem = li.find("a", class_="JobCard_jobTitle___7I6y")
+                        salary_elem = li.find("div", class_="JobCard_salaryEstimate__arV5J")
                         location_elem = li.find("div", class_="JobCard_location__rCz3x")
-                        location = location_elem.text.strip() if location_elem else "Not available"
-
-                        # Find application link
-                        application_link_elem = li.find("a", class_="JobCard_jobTitle___7I6y")
-                        application_link = application_link_elem["href"] if application_link_elem else "Not available"
-
-                        # Find posted time
                         posted_time_elem = li.find("div", class_="JobCard_listingAge__Ny_nG")
-                        posted_time = posted_time_elem.text.strip() if posted_time_elem else "Not available"
-                        job_dic["Job_Title"]=job_title
-                        job_dic["Company_Name"]=company_name
-                        job_dic["Location"]=location
-                        job_dic["Post_Time"]=posted_time
-                        job_dic["Salary"]=salary
-                        job_dic["link"]=application_link
-                        job_list.append(job_dic)
-                except Exception as e:
-                    continue  # Skip this iteration if an error occurs
 
+                        job_dic["Job_Title"] = job_title_elem.text.strip() if job_title_elem else None
+                        job_dic["Company_Name"] = company_name_elem.text.strip() if company_name_elem else None
+                        job_dic["Location"] = location_elem.text.strip() if location_elem else "Not available"
+                        job_dic["Post_Time"] = posted_time_elem.text.strip() if posted_time_elem else "Not available"
+                        job_dic["Salary"] = salary_elem.text.strip() if salary_elem else "Not available"
+                        job_dic["link"] = "https://www.glassdoor.co.in" + job_title_elem['href'] if job_title_elem else "Not available"
 
-            # Insert data into the resumes table
-            
-            return render_template('index.html', prediction=job_prediction,job_dic=job_list, message='Resume Uploaded Succesfully')
+                        if job_dic["Company_Name"] and job_dic["Job_Title"]:
+                            job_list.append(job_dic)
+                    except Exception:
+                        continue
+
+            return render_template('index.html', prediction=job_prediction, job_dic=job_list, message='Resume Uploaded Successfully')
+
         except Exception as e:
-            return render_template('index.html', message=str(e))
+            return render_template('index.html', message=f"Error: {str(e)}")
 
     return render_template('index.html', message='Invalid request')
 
