@@ -104,7 +104,7 @@ def login():
 # Function to connect to PostgreSQL database
 conn = psycopg2.connect(
     host="localhost",
-    database="dhp2024",
+    database="jobcatch_db",
     user='postgres',
     password='Nikhil@930'
 )
@@ -159,13 +159,13 @@ job_code_dic = {0: "Advocate", 1: "Arts", 2: "Automation Testing", 3: "Blockchai
 job_code = {'Advocate': 'advocate', 'Arts': 'arts', 'Automation Testing': 'automation-testing', 'Blockchain': 'blockchain', 'Business Analyst': 'business-analyst', 'Civil Engineer': 'civil-engineer', 'Data Science': 'data-science', 'Database': 'database', 'DevOps Engineer': 'devops-engineer', 'DotNet Developer': 'dotnet-developer', 'ETL Developer': 'etl-developer', 'Electrical Engineering': 'electrical-engineering', 'HR': 'hr', 'Hadoop': 'hadoop', 'Health and fitness': 'health-and-fitness', 'Java Developer': 'java-developer', 'Mechanical Engineer': 'mechanical-engineer', 'Network Security Engineer': 'network-security-engineer', 'Operations Manager': 'operations-manager', 'PMO': 'pmo', 'Python Developer': 'python-developer', 'SAP Developer': 'sap-developer', 'Sales': 'sales', 'Testing': 'testing', 'Web Designing': 'web-designing'}
 
 def cleanResume(resumeText):
-    resumeText = re.sub('http\S+\s*', ' ', resumeText)  # remove URLs
-    resumeText = re.sub('RT|cc', ' ', resumeText)  # remove RT and cc
-    resumeText = re.sub('#\S+', '', resumeText)  # remove hashtags
-    resumeText = re.sub('@\S+', '  ', resumeText)  # remove mentions
-    resumeText = re.sub('[%s]' % re.escape("""!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~"""), ' ', resumeText)  # remove punctuations
+    resumeText = re.sub(r'http\S+\s*', ' ', resumeText)
+    resumeText = re.sub(r'RT|cc', ' ', resumeText)
+    resumeText = re.sub(r'#\S+', '', resumeText)
+    resumeText = re.sub(r'@\S+', '  ', resumeText)
+    resumeText = re.sub(r'[%s]' % re.escape(r"""!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~"""), ' ', resumeText)
     resumeText = re.sub(r'[^\x00-\x7f]', r' ', resumeText)
-    resumeText = re.sub('\s+', ' ', resumeText)  # remove extra whitespace
+    resumeText = re.sub(r'\s+', ' ', resumeText)
     return resumeText
 
 def predict(text):

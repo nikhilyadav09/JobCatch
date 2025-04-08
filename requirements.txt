@@ -1,0 +1,11 @@
+Flask
+Werkzeug
+pandas
+numpy
+psycopg2-binary
+python-docx
+PyPDF2
+requests
+beautifulsoup4
+urllib3
+scikit-learn
